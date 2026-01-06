@@ -2,9 +2,9 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="theme-color" content="#25D366">
     <title>WhatsApp Telefon Numarası Formatlar</title>
 
@@ -29,8 +29,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 20px;
+            padding-top: 25vh;
             color: #fff;
         }
 
@@ -147,7 +148,7 @@
     <div class="container">
         <h2>Telefon Numarası Giriniz</h2>
         <form id="whatsappForm" action="" method="get" onsubmit="return startChat();">
-            <input type="text" id="phoneInput" placeholder="Telefon numarasını buraya giriniz" required oninput="formatPhoneNumber();" autocomplete="off">
+            <input type="tel" inputmode="numeric" id="phoneInput" placeholder="Telefon numarasını buraya giriniz" required oninput="formatPhoneNumber();" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <div class="button-group">
                 <button type="submit">WhatsApp'ta Aç</button>
                 <button type="button" class="clear" onclick="clearForm();">Temizle</button>

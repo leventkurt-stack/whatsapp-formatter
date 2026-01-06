@@ -1,17 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Phone Number Formatter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>WhatsApp Telefon Numarası Formatlar</title>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="WPNF" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #128C7E;
+            font-size: 24px;
+        }
+
+        #whatsappForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #phoneInput {
+            padding: 15px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        #phoneInput:focus {
+            border-color: #25D366;
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+        }
+
+        button {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:hover {
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .result p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        #formattedNumber {
+            font-size: 18px;
+            font-weight: bold;
+            color: #128C7E;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            #phoneInput, button {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Enter Phone Number</h2>
-    <form id="whatsappForm" action="" method="get" onsubmit="return startChat();">
-        <input type="text" id="phoneInput" placeholder="Enter phone number here" required oninput="formatPhoneNumber();" autocomplete="off">
-        <button type="submit">Submit</button>
-    </form>
-    <p>Formatted Phone Number: <span id="formattedNumber">N/A</span></p>
+    <div class="container">
+        <h2>Telefon Numarası Giriniz</h2>
+        <form id="whatsappForm" action="" method="get" onsubmit="return startChat();">
+            <input type="text" id="phoneInput" placeholder="Telefon numarasını buraya giriniz" required oninput="formatPhoneNumber();" autocomplete="off">
+            <button type="submit">Gönder</button>
+        </form>
+        <div class="result">
+            <p>Formatlanmış Telefon Numarası:</p>
+            <span id="formattedNumber">Yok</span>
+        </div>
+    </div>
 
     <script>
         document.getElementById('phoneInput').addEventListener('input', function (e) {
